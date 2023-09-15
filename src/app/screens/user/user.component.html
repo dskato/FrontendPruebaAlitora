@@ -15,7 +15,7 @@
     class="row px-3 justify-content-center align-items-center"
     style="min-height: 90vh"
   >
-    <div  class="user-cont col-md-4 mx-auto mt-2">
+    <div class="user-cont col-md-4 mx-auto mt-2">
       <div class="text-center">
         <h5 class="cont-title mt-3">Agregar Cliente</h5>
       </div>
@@ -52,13 +52,12 @@
           </button>
         </div>
         <hr class="my-4" />
-        
       </div>
 
       <div class="text-center">
         <h5 class="cont-title mt-3">Lista de clientes</h5>
       </div>
-      <div  class="row my-3 ">
+      <div class="row my-3">
         <ul class="list-group">
           <div class="list-group-item" *ngFor="let user of users">
             <div class="row">
@@ -69,13 +68,22 @@
                 {{ user.lastname }}
               </div>
               <div class="col col-lg-1">
-                <i class="bi bi-trash-fill" (click)="deleteClient(user.clientId)"></i>
+                <i
+                  class="bi bi-trash-fill"
+                  (click)="deleteClient(user.clientId)"
+                ></i>
+              </div>
+              <div class="col col-lg-1">
+                <i class="bi bi-bag-plus-fill" (click)="addOrder(user)"></i>
               </div>
               <div class="col col-lg-1" *ngIf="selectedClient !== user">
                 <i class="bi bi-pencil-fill" (click)="editClient(user)"></i>
               </div>
               <div class="col col-lg-1" *ngIf="selectedClient === user">
-                <i class="bi bi-check-circle-fill" (click)="updateClient(user)"></i>
+                <i
+                  class="bi bi-check-circle-fill"
+                  (click)="updateClient(user)"
+                ></i>
               </div>
             </div>
             <div class="row" *ngIf="selectedClient === user">
@@ -101,14 +109,13 @@
           </div>
         </ul>
       </div>
-
     </div>
 
     <!--
     CRUD PRODUCTO
 -->
 
-    <div  class="user-cont col-md-4 mx-auto mt-2">
+    <div class="user-cont col-md-4 mx-auto mt-2">
       <div class="text-center">
         <h5 class="cont-title mt-3">Agregar Producto</h5>
       </div>
@@ -145,9 +152,7 @@
           </button>
         </div>
         <hr class="my-4" />
-        
       </div>
-
 
       <div class="text-center">
         <h5 class="cont-title mt-3">Lista de productos</h5>
@@ -163,13 +168,20 @@
                 {{ p.unitPrice }}
               </div>
               <div class="col col-lg-1">
-                <i class="bi bi-trash-fill" (click)="deleteProduct(p.productId)"></i>
+                <i
+                  class="bi bi-trash-fill"
+                  (click)="deleteProduct(p.productId)"
+                ></i>
               </div>
+              
               <div class="col col-lg-1" *ngIf="selectedProduct !== p">
                 <i class="bi bi-pencil-fill" (click)="editProduct(p)"></i>
               </div>
               <div class="col col-lg-1" *ngIf="selectedProduct === p">
-                <i class="bi bi-check-circle-fill" (click)="updateProduct(p)"></i>
+                <i
+                  class="bi bi-check-circle-fill"
+                  (click)="updateProduct(p)"
+                ></i>
               </div>
             </div>
             <div class="row" *ngIf="selectedProduct === p">
@@ -193,10 +205,8 @@
               </div>
             </div>
           </div>
-          
         </ul>
       </div>
-
     </div>
   </div>
 </div>

@@ -11,12 +11,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { UserComponent } from './screens/user/user.component';
 import { ProductsComponent } from './screens/products/products.component';
+import { OrdersComponent } from './screens/orders/orders.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     UserComponent,
-    ProductsComponent
+    ProductsComponent,
+    OrdersComponent
   ],
   imports: [
     BrowserModule,

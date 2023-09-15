@@ -18,6 +18,7 @@ export class ApiService {
   pdrRes_delete:string = 'product/DeleteProductById';
   prdRes_update: string = 'product/UpdateProduct';
 
+  ordRes_add:string = 'order/AddOrder';
 
 
   constructor(private http: HttpClient) {}
@@ -30,6 +31,20 @@ export class ApiService {
     const payload = { clientId, firstname, lastname };
     return this.http.post<BaseResponse<string>>(
       this.appUrl + this.userRes_add,
+      payload
+    );
+  }
+
+  addOrder(
+    orderId: string,
+    orderDate: Date,
+    clientId: number,
+    productId: number,
+    quantity:number
+  ): Observable<BaseResponse<string>> {
+    const payload = { orderId, orderDate, clientId, productId, quantity };
+    return this.http.post<BaseResponse<string>>(
+      this.appUrl + this.ordRes_add,
       payload
     );
   }

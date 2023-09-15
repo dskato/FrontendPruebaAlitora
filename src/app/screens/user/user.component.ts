@@ -6,6 +6,7 @@ import { map } from 'rxjs/operators';
 import { UserDto } from 'src/app/interfaces/user-dto';
 import { ProductDto } from 'src/app/interfaces/product-dto';
 import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user',
@@ -19,14 +20,14 @@ export class UserComponent {
   selectedClient: UserDto | null = null;
   selectedProduct: ProductDto | null = null;
 
-
   users: UserDto[] = [];
   products: ProductDto[] = [];
 
   constructor(
     private formBuilder: FormBuilder,
     private apiService: ApiService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private router: Router
   ) {
     this.userForm = this.formBuilder.group({
       firstname: ['', [Validators.required]],
@@ -36,9 +37,6 @@ export class UserComponent {
       name: ['', [Validators.required]],
       unitPrice: ['', [Validators.required]],
     });
-
-
-  
   }
 
   ngOnInit(): void {
@@ -50,7 +48,6 @@ export class UserComponent {
       this.getAllClients();
       this.getAllProducts();
     });
-
   }
 
   deleteClient(id: number) {
@@ -142,29 +139,42 @@ export class UserComponent {
   editProduct(product: ProductDto) {
     this.selectedProduct = product;
   }
-  
+
   updateClient(client: UserDto) {
-    this.apiService.updateClient(client.clientId, client.firstname, client.lastname).subscribe(
-      (response) => {
-        this.getAllClients();
-        console.log(response)
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
+    this.apiService
+      .updateClient(client.clientId, client.firstname, client.lastname)
+      .subscribe(
+        (response) => {
+          this.getAllClients();
+          console.log(response);
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
   }
 
   updateProduct(product: ProductDto) {
-    this.apiService.updateProduct(product.productId, product.name, parseInt(product.unitPrice)).subscribe(
-      (response) => {
-        this.getAllProducts();
-        console.log(response)
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
+    this.apiService
+      .updateProduct(
+        product.productId,
+        product.name,
+        parseInt(product.unitPrice)
+      )
+      .subscribe(
+        (response) => {
+          this.getAllProducts();
+          console.log(response);
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
   }
-  
+
+  addOrder(client: UserDto) {
+    this.router.navigate(['/orders'], {
+      queryParams: { clientId: client.clientId },
+    });
+  }
 }

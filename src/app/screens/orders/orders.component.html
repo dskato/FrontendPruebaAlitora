@@ -1,0 +1,43 @@
+<!-- ... Other HTML code ... -->
+
+<div class="container-fluid">
+  <div
+    class="row px-3 justify-content-center align-items-center"
+    style="min-height: 90vh"
+  >
+    <div class="user-cont col-md-4 mx-auto mt-2">
+      <div class="text-center">
+        <h5 class="cont-title mt-3">Agregar Orden</h5>
+      </div>
+
+      <div class="my-3">
+        <label for="product-dropdown" class="form-label">Selecciona un producto:</label>
+        <select
+          id="product-dropdown"
+          class="form-select"
+          [(ngModel)]="selectedProductId"
+        >
+          <option *ngFor="let p of products" [value]="p.productId">
+            {{ p.name }} {{ p.unitPrice }}
+          </option>
+        </select>
+
+        <label for="qyt-inpt" class="form-label mt-3">Cantidad</label>
+        <input
+          type="number"
+          class="form-control"
+          id="qyt-inpt"
+          placeholder="12"
+          [(ngModel)]="qytt"
+          name="qyt"
+        />
+
+        <div class="d-grid gap-2 col-6 mx-auto my-3">
+          <button class="btn btn-primary" type="button" id="btn-signin" (click)="addOrder()">
+            Guardar cliente
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
