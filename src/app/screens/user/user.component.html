@@ -1,0 +1,202 @@
+<!--
+    NAVBAR
+-->
+<nav class="navbar bg-dark">
+  <div class="container-fluid">
+    <span class="navtitle">Prueba Altiora - David Araujo - 15/09/2023</span>
+  </div>
+</nav>
+
+<!--
+    CRUD CLIENTE
+-->
+<div class="container-fluid">
+  <div
+    class="row px-3 justify-content-center align-items-center"
+    style="min-height: 90vh"
+  >
+    <div  class="user-cont col-md-4 mx-auto mt-2">
+      <div class="text-center">
+        <h5 class="cont-title mt-3">Agregar Cliente</h5>
+      </div>
+
+      <div [formGroup]="userForm" class="my-3">
+        <label for="firstname-inpt" class="form-label">Nombre</label>
+        <input
+          type="text"
+          class="form-control"
+          id="firstname-inpt"
+          placeholder="David"
+          formControlName="firstname"
+          name="firstname"
+        />
+
+        <label for="lastname-inpt" class="form-label mt-3">Apellido</label>
+        <input
+          type="text"
+          class="form-control"
+          id="lastname-inpt"
+          placeholder="Araujo"
+          formControlName="lastname"
+          name="lastname"
+        />
+
+        <div class="d-grid gap-2 col-6 mx-auto my-3">
+          <button
+            class="btn btn-primary"
+            type="button"
+            id="btn-signin"
+            (click)="addClient()"
+          >
+            Guardar cliente
+          </button>
+        </div>
+        <hr class="my-4" />
+        
+      </div>
+
+      <div class="text-center">
+        <h5 class="cont-title mt-3">Lista de clientes</h5>
+      </div>
+      <div  class="row my-3 ">
+        <ul class="list-group">
+          <div class="list-group-item" *ngFor="let user of users">
+            <div class="row">
+              <div class="col" *ngIf="selectedClient !== user">
+                {{ user.firstname }}
+              </div>
+              <div class="col" *ngIf="selectedClient !== user">
+                {{ user.lastname }}
+              </div>
+              <div class="col col-lg-1">
+                <i class="bi bi-trash-fill" (click)="deleteClient(user.clientId)"></i>
+              </div>
+              <div class="col col-lg-1" *ngIf="selectedClient !== user">
+                <i class="bi bi-pencil-fill" (click)="editClient(user)"></i>
+              </div>
+              <div class="col col-lg-1" *ngIf="selectedClient === user">
+                <i class="bi bi-check-circle-fill" (click)="updateClient(user)"></i>
+              </div>
+            </div>
+            <div class="row" *ngIf="selectedClient === user">
+              <div class="col">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder=""
+                  [(ngModel)]="user.firstname"
+                  name="firstname_ls"
+                />
+              </div>
+              <div class="col">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder=""
+                  [(ngModel)]="user.lastname"
+                  name="lastname_ls"
+                />
+              </div>
+            </div>
+          </div>
+        </ul>
+      </div>
+
+    </div>
+
+    <!--
+    CRUD PRODUCTO
+-->
+
+    <div  class="user-cont col-md-4 mx-auto mt-2">
+      <div class="text-center">
+        <h5 class="cont-title mt-3">Agregar Producto</h5>
+      </div>
+
+      <div [formGroup]="productForm" class="my-3">
+        <label for="name-inpt" class="form-label">Nombre del producto</label>
+        <input
+          type="text"
+          class="form-control"
+          id="name-inpt"
+          placeholder="Manzana"
+          formControlName="name"
+          name="name"
+        />
+
+        <label for="unitprice-inpt" class="form-label mt-3">Precio</label>
+        <input
+          type="number"
+          class="form-control"
+          id="unitprice-inpt"
+          placeholder="10"
+          formControlName="unitPrice"
+          name="unitPrice"
+        />
+
+        <div class="d-grid gap-2 col-6 mx-auto my-3">
+          <button
+            class="btn btn-info"
+            type="button"
+            id="btn-signin"
+            (click)="addProduct()"
+          >
+            Guardar producto
+          </button>
+        </div>
+        <hr class="my-4" />
+        
+      </div>
+
+
+      <div class="text-center">
+        <h5 class="cont-title mt-3">Lista de productos</h5>
+      </div>
+      <div class="row">
+        <ul class="list-group">
+          <div class="list-group-item" *ngFor="let p of products">
+            <div class="row">
+              <div class="col" *ngIf="selectedProduct !== p">
+                {{ p.name }}
+              </div>
+              <div class="col" *ngIf="selectedProduct !== p">
+                {{ p.unitPrice }}
+              </div>
+              <div class="col col-lg-1">
+                <i class="bi bi-trash-fill" (click)="deleteProduct(p.productId)"></i>
+              </div>
+              <div class="col col-lg-1" *ngIf="selectedProduct !== p">
+                <i class="bi bi-pencil-fill" (click)="editProduct(p)"></i>
+              </div>
+              <div class="col col-lg-1" *ngIf="selectedProduct === p">
+                <i class="bi bi-check-circle-fill" (click)="updateProduct(p)"></i>
+              </div>
+            </div>
+            <div class="row" *ngIf="selectedProduct === p">
+              <div class="col">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder=""
+                  [(ngModel)]="p.name"
+                  name="name_ls"
+                />
+              </div>
+              <div class="col">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder=""
+                  [(ngModel)]="p.unitPrice"
+                  name="unitprice_ls"
+                />
+              </div>
+            </div>
+          </div>
+          
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</div>
